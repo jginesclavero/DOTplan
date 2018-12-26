@@ -13,9 +13,7 @@ from diagnostic_msgs.msg import KeyValue
 
 from python_qt_binding import loadUi
 from python_qt_binding.QtCore import Qt, QTimer, Signal, Slot
-from python_qt_binding.QtGui import *
-from python_qt_binding.QtPrintSupport import *
-from python_qt_binding.QtWidgets import *
+
 from xdot.msg import Action_interface
 from xdot.msg import Action_feedback
 from xdot.srv import *
