@@ -13,7 +13,9 @@ from diagnostic_msgs.msg import KeyValue
 
 from python_qt_binding import loadUi
 from python_qt_binding.QtCore import Qt, QTimer, Signal, Slot
-from python_qt_binding.QtGui import QHeaderView, QIcon, QTreeWidgetItem, QListWidgetItem, QWidget
+from python_qt_binding.QtGui import *
+from python_qt_binding.QtPrintSupport import *
+from python_qt_binding.QtWidgets import *
 from xdot.msg import Action_interface
 from xdot.msg import Action_feedback
 from xdot.srv import *
@@ -64,28 +66,28 @@ class PlanViewWidget(QWidget):
         self.getState()
         self.getGoal()
         print "files reloaded"
-        
+
     def callback(self, mode):
         rospy.loginfo(mode.action_name)
-        self.updateUI(mode)        
+        self.updateUI(mode)
 
     def getState(self):
-        
+
         try:
             rospy.loginfo("Entrou")
             rospy.wait_for_service('/getActiveState', timeout=0.1)
             state_service = rospy.ServiceProxy('/getActiveState', getActivateState)
             resp=state_service()
             print resp.state_info.server_status
-            self.updateUI(resp.state_info)           
- 
+            self.updateUI(resp.state_info)
+
         except rospy.ROSException:
             return
-    
+
     def updateUI(self, state_info):
-        self.active_state_name=state_info.state_name        
-        self.active_state_id=state_info.state_id        
-        self.active_action_name=state_info.action_name       
+        self.active_state_name=state_info.state_name
+        self.active_state_id=state_info.state_id
+        self.active_action_name=state_info.action_name
         self.statusLabel.setText(state_info.action_name)
         self.stateName.setText(state_info.state_name)
         print state_info.server_status
@@ -113,8 +115,8 @@ class PlanViewWidget(QWidget):
         for i in self._state_fluents[self._mapping_ID_fluentsID[2]]:
             item = QListWidgetItem(self.goalView)
             item.setText(i)
-        
-    
+
+
     def read_objectfile(self):
             typefile=os.path.join(rospkg.RosPack().get_path('xdot'), 'resources/ExecutionINFO/', 'typefile')
 	    fp = open(typefile, "r")
@@ -130,7 +132,7 @@ class PlanViewWidget(QWidget):
                     inst.setText(0, lobject)
                 else:
                     items = self.instanceView.findItems(ltype,Qt.MatchExactly)
-                    item=items[0]                     
+                    item=items[0]
                     inst = QTreeWidgetItem(item)
                     inst.setText(0, lobject)
 	    fp.close()
@@ -142,7 +144,7 @@ class PlanViewWidget(QWidget):
 	    fp = open(state_fluentsfile, "r")
 	    lines = fp.readlines()
             get_state_name=False
-            index=-1;         
+            index=-1;
 	    for line in lines:
 	        line = line.strip()
                 if line == "------" :
@@ -165,9 +167,9 @@ class PlanViewWidget(QWidget):
 	    fp = open(state_key_fluentsfile, "r")
 	    lines = fp.readlines()
             get_state_name=False
-            index=-1;         
+            index=-1;
 	    for line in lines:
-			#line = line.strip() 
+			#line = line.strip()
 	        line = line.strip()
                 if line == "------" :
                     get_state_name=True
@@ -198,7 +200,7 @@ class PlanViewWidget(QWidget):
     def _handle_restartExecButton_clicked(self):
          state_service = rospy.ServiceProxy('/restartExecution', RequestRestartExecution)
          resp=state_service()
-         
+
 
     def _handle_reloadFileButton_clicked(self):
          print "reload"
@@ -218,7 +220,7 @@ class PlanViewWidget(QWidget):
 
     """
     Qt methods
-    """ 
+    """
     def shutdown_plugin(self):
         pass
 
