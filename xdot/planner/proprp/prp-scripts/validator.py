@@ -60,7 +60,7 @@ def exporttype(filename, problem):
     #fp.write ("(:types %s)%s" %(s, "\n"))
     sp=" "
     o = []
-    #o.append (sp + "(:objects")   
+    #o.append (sp + "(:objects")
     for obj in problem.objects:
             if problem.obj_to_type[obj] == Predicate.OBJECT:
                 o.append (sp + sp + obj)
@@ -104,16 +104,16 @@ def validate(dfile, pfile, sol, val):
                                       _convert_cond_effect(fluents, eff), op_name, unfluents)
                             for eff in flatten(op)]
         #print "\n%s\n%s" % (op.name, '\n'.join(map(str, actions[op.name])))
-    
+
 #    print actions(0).name
 
     init_state = State(_convert_conjunction(fluents, problem.init))
     goal_state = State([-1])
     goal_fluents = set(_convert_conjunction(fluents, problem.goal))
-    
+
     #print "\t Tesss: %s" % type(init_state.fluents)
     #print(", ".join(str(e) for e in init_state.fluents))
-        
+
     open_list = [init_state]
 
     nodes = {init_state: 1, goal_state: 2}
@@ -128,7 +128,7 @@ def validate(dfile, pfile, sol, val):
     print "\nStarting the FOND simulation..."
 
     unhandled = []
-    
+
     fp = open("state_fluents", "w")
     fp2 = open("state_key_fluents", "w")
     s=_state_string(unfluents, init_state);
@@ -173,7 +173,7 @@ def validate(dfile, pfile, sol, val):
                 f.append(v.fluents)
                 fnn.append(n2)
                 fpp.append(p2)
-                
+
                 i += 1
 
                 if v.is_goal(goal_fluents):
@@ -203,7 +203,7 @@ def validate(dfile, pfile, sol, val):
               #  print len(fnn_diff)
                 fnn_str=[]
                 fpp_str=[]
-                
+
                 for x in fnn_diff:
                     fnn_str.append(edge_fluents_string_neg(unfluents, x))
                 for x in fpp_diff:
@@ -271,11 +271,11 @@ def chase_goal(v,actions,unfluents,goal_fluents,val):
             elif v not in nodes:
                     nodes[v] = node_index
                     node_index += 1
-                    open_list.append(v)               
+                    open_list.append(v)
 
     return action_togoal
-    
-    
+
+
 
 def _convert_cond_effect(mapping, eff):
     if isinstance(eff, And):

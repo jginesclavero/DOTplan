@@ -1,7 +1,7 @@
 DOTPlan Framework for ROS Systems
 =================
 
-This framework incorporates Probabilistic AI Planning into ROS systems. Its default planner is Prob-PRP, a MAXPROB solver. The action dispatching interface is based on ROSPlan, 
+This framework incorporates Probabilistic AI Planning into ROS systems. Its default planner is Prob-PRP, a MAXPROB solver. The action dispatching interface is based on ROSPlan,
 Its demo is a expansion from ROSPlan Interface Quadrotor, using navigation library. This framework relays is based on the execution of a FSM given in DOT format. It includes a visualization tool based on XDot. It was implemented for ROS Indigo running on Ubuntu 14.04.
 
 
@@ -52,7 +52,6 @@ Policy to DOT Conditional Plan dependecies (Planner-parser):
 sudo pip install networkx
 sudo apt-get install graphviz libgraphviz-dev graphviz-dev pkg-config
 sudo pip install pygraphviz
-sudo pip2 install pygraphviz --install-option="--include-path=/usr/include/graphviz" --install-option="--library-path=/usr/lib/graphviz/" --upgrade --force-reinstall
 ```
 Install Gazebo (Demos):
 ```
@@ -65,7 +64,7 @@ sudo apt-get install ros-indigo-hector-quadrotor-demo
 ```
 Navigation Stack (Demos):
 ```
-sudo apt-get install ros-indigo-map-server ros-indigo-amcl ros-indigo-move-base ros-indigo-teleop-twist-keyboard 
+sudo apt-get install ros-indigo-map-server ros-indigo-amcl ros-indigo-move-base ros-indigo-teleop-twist-keyboard
 sudo apt-get install ros-indigo-dwa-local-planner
 ```
 
@@ -87,7 +86,7 @@ catkin_make
 cd
 cd catkin_ws
 source devel/setup.bash
-roslaunch xdot roslaunch xdot prp_plan_standalone_global.launch
+roslaunch xdot prp_plan_standalone_global.launch
 ```
 
 (2)stand_alone PRP:
@@ -95,7 +94,7 @@ roslaunch xdot roslaunch xdot prp_plan_standalone_global.launch
 cd
 cd catkin_ws
 source devel/setup.bash
-roslaunch xdot roslaunch xdot prp_plan_standalone_globalFOND.launch
+roslaunch xdot prp_plan_standalone_globalFOND.launch
 ```
 
 (3)playpen_demo:

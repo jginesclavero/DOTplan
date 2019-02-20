@@ -1,119 +1,46 @@
 Mapping:
 
-  var0:0	<-> 	 airborne(q1)
-  var0:1	<-> 	 grounded(q1)
-  var1:0	<-> 	 cokeat(coke1, wp0)
-  var1:1	<-> 	 cokeat(coke1, wp1)
-  var1:2	<-> 	 cokeat(coke1, wp10)
-  var1:3	<-> 	 cokeat(coke1, wp2)
-  var1:4	<-> 	 cokeat(coke1, wp3)
-  var1:5	<-> 	 cokeat(coke1, wp4)
-  var2:0	<-> 	 cokeat(coke2, wp0)
-  var2:1	<-> 	 cokeat(coke2, wp1)
-  var2:2	<-> 	 cokeat(coke2, wp10)
-  var2:3	<-> 	 cokeat(coke2, wp2)
-  var2:4	<-> 	 cokeat(coke2, wp3)
-  var2:5	<-> 	 cokeat(coke2, wp4)
-  var3:0	<-> 	 connected(wp1, wp2)
-  var3:1	<-> 	 not(connected(wp1, wp2))
-  var4:0	<-> 	 connected(wp2, wp1)
-  var4:1	<-> 	 not(connected(wp2, wp1))
-  var5:0	<-> 	 finished(q1)
-  var5:1	<-> 	 not(finished(q1))
-  var6:0	<-> 	 holdingcoke(coke1)
-  var6:1	<-> 	 not(holdingcoke(coke1))
-  var7:0	<-> 	 holdingcoke(coke2)
-  var7:1	<-> 	 not(holdingcoke(coke2))
-  var8:0	<-> 	 quadat(q1, wp0)
-  var8:1	<-> 	 quadat(q1, wp1)
-  var8:2	<-> 	 quadat(q1, wp10)
-  var8:3	<-> 	 quadat(q1, wp2)
-  var8:4	<-> 	 quadat(q1, wp3)
-  var8:5	<-> 	 quadat(q1, wp4)
-  var9:0	<-> 	 quadfuel(fl1)
-  var9:1	<-> 	 quadfuel(fl10)
-  var9:2	<-> 	 quadfuel(fl2)
-  var9:3	<-> 	 quadfuel(fl3)
-  var9:4	<-> 	 quadfuel(fl4)
-  var9:5	<-> 	 quadfuel(fl5)
-  var9:6	<-> 	 quadfuel(fl6)
-  var9:7	<-> 	 quadfuel(fl7)
-  var9:8	<-> 	 quadfuel(fl8)
-  var9:9	<-> 	 quadfuel(fl9)
+  var0:0	<-> 	 connected(wp1, wp2)
+  var0:1	<-> 	 not(connected(wp1, wp2))
+  var1:0	<-> 	 connected(wp2, wp1)
+  var1:1	<-> 	 not(connected(wp2, wp1))
+  var2:0	<-> 	 doorat(wp1, wp2)
+  var2:1	<-> 	 not(doorat(wp1, wp2))
+  var3:0	<-> 	 quadat(q1, wp0)
+  var3:1	<-> 	 quadat(q1, wp1)
+  var3:2	<-> 	 quadat(q1, wp10)
+  var3:3	<-> 	 quadat(q1, wp2)
+  var3:4	<-> 	 quadat(q1, wp3)
+  var3:5	<-> 	 quadat(q1, wp4)
+  var3:6	<-> 	 quadat(q1, wp5)
+  var3:7	<-> 	 quadat(q1, wp6)
+  var3:8	<-> 	 quadat(q1, wp7)
 
 Policy:
 
-If holds: cokeat(coke2, wp3)/cokeat(coke1, wp2)
+If holds: quadat(q1, wp2)
 Execute: goal / SC / d=0
 
-If holds: quadat(q1, wp3)/holdingcoke(coke2)/cokeat(coke2, wp2)/cokeat(coke1, wp2)
-Execute: drop q1 wp3 wp2 coke2 / SC / d=1
+If holds: quadat(q1, wp7)
+Execute: move-to q1 wp7 wp2 / SC / d=1
 
-If holds: airborne(q1)/quadat(q1, wp2)/quadfuel(fl7)/holdingcoke(coke2)/cokeat(coke2, wp2)/cokeat(coke1, wp2)
-Execute: move-to q1 wp2 wp3 fl5 fl6 fl7 / SC / d=2
+If holds: quadat(q1, wp6)
+Execute: move-to q1 wp6 wp7 / SC / d=2
 
-If holds: airborne(q1)/quadat(q1, wp2)/quadfuel(fl6)/holdingcoke(coke2)/cokeat(coke2, wp2)/cokeat(coke1, wp2)
-Execute: move-to q1 wp2 wp3 fl4 fl5 fl6 / SC / d=2
+If holds: quadat(q1, wp5)
+Execute: move-to q1 wp5 wp6 / SC / d=3
 
-If holds: airborne(q1)/quadat(q1, wp2)/quadfuel(fl5)/holdingcoke(coke2)/cokeat(coke2, wp2)/cokeat(coke1, wp2)
-Execute: move-to q1 wp2 wp3 fl3 fl4 fl5 / SC / d=2
+If holds: quadat(q1, wp4)
+Execute: move-to q1 wp4 wp5 / SC / d=4
 
-If holds: airborne(q1)/quadat(q1, wp2)/quadfuel(fl4)/holdingcoke(coke2)/cokeat(coke2, wp2)/cokeat(coke1, wp2)
-Execute: move-to q1 wp2 wp3 fl2 fl3 fl4 / SC / d=2
+If holds: quadat(q1, wp3)
+Execute: move-to q1 wp3 wp4 / SC / d=5
 
-If holds: airborne(q1)/quadat(q1, wp2)/quadfuel(fl7)/holdingcoke(coke2)/cokeat(coke2, wp2)/holdingcoke(coke1)/cokeat(coke1, wp1)
-Execute: drop q1 wp2 wp1 coke1 / SC / d=3
+If holds: quadat(q1, wp10)
+Execute: move-to q1 wp10 wp3 / SC / d=6
 
-If holds: airborne(q1)/quadat(q1, wp2)/quadfuel(fl6)/holdingcoke(coke2)/cokeat(coke2, wp2)/holdingcoke(coke1)/cokeat(coke1, wp1)
-Execute: drop q1 wp2 wp1 coke1 / SC / d=3
-
-If holds: airborne(q1)/quadat(q1, wp2)/quadfuel(fl5)/holdingcoke(coke2)/cokeat(coke2, wp2)/holdingcoke(coke1)/cokeat(coke1, wp1)
-Execute: drop q1 wp2 wp1 coke1 / SC / d=3
-
-If holds: airborne(q1)/quadat(q1, wp2)/quadfuel(fl4)/holdingcoke(coke2)/cokeat(coke2, wp2)/holdingcoke(coke1)/cokeat(coke1, wp1)
-Execute: drop q1 wp2 wp1 coke1 / SC / d=3
-
-If holds: airborne(q1)/quadat(q1, wp2)/quadfuel(fl7)/cokeat(coke2, wp2)/holdingcoke(coke1)/cokeat(coke1, wp1)
-Execute: pickup q1 coke2 wp2 / SC / d=4
-
-If holds: airborne(q1)/quadat(q1, wp2)/quadfuel(fl6)/cokeat(coke2, wp2)/holdingcoke(coke1)/cokeat(coke1, wp1)
-Execute: pickup q1 coke2 wp2 / SC / d=4
-
-If holds: airborne(q1)/quadat(q1, wp2)/quadfuel(fl5)/cokeat(coke2, wp2)/holdingcoke(coke1)/cokeat(coke1, wp1)
-Execute: pickup q1 coke2 wp2 / SC / d=4
-
-If holds: airborne(q1)/quadat(q1, wp2)/quadfuel(fl4)/cokeat(coke2, wp2)/holdingcoke(coke1)/cokeat(coke1, wp1)
-Execute: pickup q1 coke2 wp2 / SC / d=4
-
-If holds: airborne(q1)/connected(wp1, wp2)/quadat(q1, wp1)/quadfuel(fl8)/cokeat(coke2, wp2)/holdingcoke(coke1)/cokeat(coke1, wp1)
-Execute: move-to q1 wp1 wp2 fl6 fl7 fl8 / SC / d=5
-
-If holds: airborne(q1)/connected(wp1, wp2)/quadat(q1, wp1)/quadfuel(fl7)/cokeat(coke2, wp2)/holdingcoke(coke1)/cokeat(coke1, wp1)
-Execute: move-to q1 wp1 wp2 fl5 fl6 fl7 / SC / d=5
-
-If holds: airborne(q1)/connected(wp1, wp2)/quadat(q1, wp1)/quadfuel(fl6)/cokeat(coke2, wp2)/holdingcoke(coke1)/cokeat(coke1, wp1)
-Execute: move-to q1 wp1 wp2 fl4 fl5 fl6 / SC / d=5
-
-If holds: airborne(q1)/connected(wp1, wp2)/quadat(q1, wp10)/quadfuel(fl9)/cokeat(coke2, wp2)/holdingcoke(coke1)/cokeat(coke1, wp1)
-Execute: move-to q1 wp10 wp1 fl7 fl8 fl9 / SC / d=6
-
-If holds: airborne(q1)/connected(wp1, wp2)/quadat(q1, wp10)/quadfuel(fl8)/cokeat(coke2, wp2)/holdingcoke(coke1)/cokeat(coke1, wp1)
-Execute: move-to q1 wp10 wp1 fl6 fl7 fl8 / SC / d=6
-
-If holds: airborne(q1)/quadat(q1, wp10)/quadfuel(fl9)/cokeat(coke2, wp2)/holdingcoke(coke1)/cokeat(coke1, wp1)
-Execute: opendoor q1 wp10 wp1 wp2 / SC / d=7
-
-If holds: airborne(q1)/quadat(q1, wp10)/quadfuel(fl8)/cokeat(coke2, wp2)/holdingcoke(coke1)/cokeat(coke1, wp1)
-Execute: opendoor q1 wp10 wp1 wp2 / SC / d=7
-
-If holds: airborne(q1)/quadat(q1, wp1)/quadfuel(fl10)/cokeat(coke2, wp2)/holdingcoke(coke1)/cokeat(coke1, wp1)
-Execute: move-to q1 wp1 wp10 fl8 fl9 fl10 / SC / d=8
-
-If holds: airborne(q1)/quadat(q1, wp1)/quadfuel(fl10)/cokeat(coke2, wp2)/cokeat(coke1, wp1)
-Execute: pickup q1 coke1 wp1 / SC / d=9
-
-If holds: grounded(q1)/quadat(q1, wp1)/quadfuel(fl10)/cokeat(coke2, wp2)/cokeat(coke1, wp1)
-Execute: takeoff q1 / SC / d=10
+If holds: quadat(q1, wp1)
+Execute: move-to q1 wp1 wp10 / SC / d=7
 
 FSAP:
 
